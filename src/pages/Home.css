@@ -1,0 +1,1210 @@
+/* 
+  Home Page and Modal Overlay Stylesheet
+  Demonstrates: CSS Grid layouts, flex grids, absolute icons, glassmorphism modal panels, and responsive media query blocks.
+*/
+
+.section-wrapper {
+  padding: var(--space-2xl) 0;
+  border-bottom: 1px solid var(--hairline);
+  background-color: transparent;
+}
+
+.section-wrapper:nth-child(even) {
+  background-color: rgba(148, 163, 184, 0.03);
+}
+
+:root:not([data-theme='dark']) .section-wrapper:nth-child(even) {
+  background-color: var(--light-100);
+}
+
+/* Why Choose Torque Talk Section Grid */
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-lg);
+}
+
+.why-us-card {
+  position: relative;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.why-us-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.why-us-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.why-us-card:hover::before {
+  opacity: 1;
+}
+
+.why-us-icon-wrapper {
+  width: 62px;
+  height: 62px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary-light), transparent);
+  border: 1px solid var(--primary-border);
+  color: var(--primary);
+  font-size: 1.75rem;
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-us-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark-900);
+}
+
+.why-us-desc {
+  font-size: 0.9rem;
+  color: var(--dark-600);
+  line-height: 1.5;
+}
+
+/* 
+  Car Details Modal Overlay Styles
+ */
+.details-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(3, 6, 15, 0.75);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: overlayFade 0.25s ease;
+}
+
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.details-modal-box {
+  background-color: var(--surface);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 750px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl), var(--glow);
+  animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--glass-border);
+}
+
+.details-modal-header {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-modal-header h3 {
+  font-size: 1.5rem;
+}
+
+.btn-details-close {
+  color: var(--dark-600);
+  padding: 4px;
+  border-radius: var(--radius-full);
+}
+
+.btn-details-close:hover {
+  background-color: var(--light-100);
+  color: var(--primary);
+}
+
+.details-modal-body {
+  padding: var(--space-lg);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-lg);
+}
+
+.details-modal-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--light-300);
+}
+
+.details-info-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.details-meta-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.details-brand {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--dark-600);
+  letter-spacing: 0.5px;
+}
+
+.details-name {
+  font-size: 1.75rem;
+  color: var(--dark-900);
+  font-family: var(--font-heading);
+}
+
+.details-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-top: 4px;
+}
+
+/* Detail Tech Specs Table */
+.details-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.details-specs-table tr {
+  border-bottom: 1px solid var(--light-200);
+}
+
+.details-specs-table tr:last-child {
+  border-bottom: none;
+}
+
+.details-specs-table th {
+  text-align: left;
+  padding: var(--space-sm) 0;
+  font-size: 0.85rem;
+  color: var(--dark-600);
+  width: 45%;
+}
+
+.details-specs-table td {
+  padding: var(--space-sm) 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark-900);
+}
+
+.details-modal-footer {
+  padding: var(--space-lg);
+  border-top: 1px solid var(--light-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+.btn-details-compare {
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-md);
+}
+
+.btn-details-compare:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-details-compare.active {
+  background-color: var(--dark-900);
+}
+
+/* Responsive modal formatting */
+@media (max-width: 768px) {
+  .why-us-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .details-modal-body {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .details-modal-img {
+    height: 180px;
+  }
+}
+
+/* Dedicated Page Layout Styles */
+.page-hero {
+  position: relative;
+  background:
+    radial-gradient(700px circle at 20% 0%, rgba(56, 189, 248, 0.14), transparent 55%),
+    radial-gradient(700px circle at 90% 30%, rgba(37, 99, 235, 0.16), transparent 55%),
+    linear-gradient(160deg, #0a1120 0%, #05070e 100%);
+  padding: 88px 20px 64px;
+  text-align: center;
+  border-bottom: 1px solid var(--hairline);
+  width: 100%;
+  overflow: hidden;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(circle at 50% 30%, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, #000, transparent 75%);
+  pointer-events: none;
+}
+
+.page-hero > * { position: relative; z-index: 1; }
+
+.page-hero h1 {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  margin-bottom: var(--space-sm);
+  background: linear-gradient(120deg, #ffffff 0%, #7dd3fc 60%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-hero p {
+  font-size: 1.1rem;
+  color: rgba(226, 232, 240, 0.75);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.page-back-btn { color: var(--primary) !important; }
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.page-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs, 8px);
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: var(--space-lg, 24px);
+  font-family: var(--font-heading);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.page-back-btn:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* 
+  =========================================
+  New Cars Page Hero Video Section
+  =========================================
+*/
+.newcars-hero {
+  position: relative;
+  width: 100%;
+  height: 520px; /* Elegant height */
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end; /* Align elements to the right */
+  align-items: center; /* Center search box vertically */
+  padding: 40px 80px; /* Padding for desktop */
+  box-sizing: border-box;
+}
+
+.newcars-hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.newcars-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.65) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.newcars-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  color: #ffffff !important;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.newcars-back-btn:hover {
+  background: var(--primary);
+  color: #060810 !important;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+.newcars-back-btn .back-arrow-svg {
+  transition: transform var(--transition-fast);
+}
+
+.newcars-back-btn:hover .back-arrow-svg {
+  transform: translateX(-3px);
+}
+
+.newcars-back-btn .back-logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.newcars-back-btn .back-logo-text {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.newcars-hero-search-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Glassmorphism search box inside New Cars Hero - high transparency for video visibility */
+.newcars-hero-search-container .search-box-card {
+  background-color: rgba(10, 15, 30, 0.25) !important; /* Very transparent dark glass */
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme='dark'] .newcars-hero-search-container .search-box-card {
+  background-color: rgba(6, 8, 16, 0.3) !important; /* Dark mode very transparent glass */
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Make internal form components transparent and slick on the glass card */
+.newcars-hero-search-container .search-box-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.newcars-hero-search-container .search-tabs {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme='dark'] .newcars-hero-search-container .search-tabs {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.newcars-hero-search-container .search-tab-btn {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.newcars-hero-search-container .search-tab-btn:hover {
+  color: var(--primary) !important;
+}
+
+.newcars-hero-search-container .search-tab-btn.active {
+  background-color: var(--primary) !important;
+  color: #060810 !important;
+}
+
+[data-theme='dark'] .newcars-hero-search-container .search-tab-btn.active {
+  background-color: var(--primary) !important;
+  color: #060810 !important;
+}
+
+.newcars-hero-search-container .custom-radio {
+  background-color: rgba(6, 8, 16, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.newcars-hero-search-container .radio-label,
+.newcars-hero-search-container .radio-text {
+  color: #e2e8f0 !important;
+}
+
+.newcars-hero-search-container .radio-input:checked ~ .radio-text {
+  color: var(--primary) !important;
+}
+
+.newcars-hero-search-container .radio-input:checked ~ .custom-radio {
+  border-color: var(--primary) !important;
+  background-color: rgba(6, 8, 16, 0.5) !important;
+}
+
+.newcars-hero-search-container .form-select,
+.newcars-hero-search-container .form-input-compact {
+  background-color: rgba(6, 8, 16, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .newcars-hero-search-container .form-select,
+[data-theme='dark'] .newcars-hero-search-container .form-input-compact {
+  background-color: rgba(6, 8, 16, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+.newcars-hero-search-container .form-select option {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+.newcars-hero-search-container .form-select:focus,
+.newcars-hero-search-container .form-input-compact:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+  background-color: rgba(6, 8, 16, 0.6) !important;
+}
+
+.newcars-hero-search-container .form-input-wrapper-select::after {
+  border-right-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+}
+
+.newcars-hero-search-container .quick-tag {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.newcars-hero-search-container .quick-tag:hover {
+  color: var(--primary) !important;
+}
+
+.newcars-hero-search-container .name-search-group {
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.newcars-hero-search-container .form-input-icon {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Align and responsiveness for mobile devices */
+@media (max-width: 768px) {
+  .newcars-hero {
+    height: auto;
+    min-height: 520px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 40px;
+  }
+  
+  .newcars-hero-search-container {
+    max-width: 100%;
+  }
+  
+  .newcars-back-btn {
+    top: 16px;
+    left: 16px;
+  }
+}
+
+/* Brands Page Hero Styles with Cinematic Video Background */
+.brands-hero {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Elegant cinematic height */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.brands-hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.brands-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(6, 8, 16, 0.1) 0%, rgba(6, 8, 16, 0.45) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.brands-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full, 50px);
+  padding: 8px 18px;
+  color: #ffffff !important;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-normal, 0.3s ease);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.brands-back-btn:hover {
+  background: var(--primary);
+  color: #060810 !important;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+.brands-hero-content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px; /* Shift the title downward */
+}
+
+.brands-hero-title-fancy {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(2.5rem, 6.5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 10%, rgba(165, 243, 252, 0.85) 50%, rgba(56, 189, 248, 0.75) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 24px rgba(56, 189, 248, 0.2);
+  opacity: 0.9; /* Add transparency to the text */
+  animation: brandsTitleGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes brandsTitleGlow {
+  0% {
+    filter: drop-shadow(0 2px 4px rgba(56, 189, 248, 0.15));
+    transform: scale(0.99);
+  }
+  100% {
+    filter: drop-shadow(0 6px 16px rgba(165, 243, 252, 0.4));
+    transform: scale(1.01);
+  }
+}
+
+/* Responsiveness for Brands Hero */
+@media (max-width: 768px) {
+  .brands-hero {
+    height: 300px;
+    padding-top: 80px;
+  }
+  
+  .brands-back-btn {
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Body Types Page Hero Styles with Cinematic Video Background */
+.bodytypes-hero {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Cinematic banner height */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.bodytypes-hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.bodytypes-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(6, 8, 16, 0.15) 0%, rgba(6, 8, 16, 0.5) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bodytypes-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full, 50px);
+  padding: 8px 18px;
+  color: #ffffff !important;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-normal, 0.3s ease);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.bodytypes-back-btn:hover {
+  background: var(--primary);
+  color: #060810 !important;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+.bodytypes-back-btn .back-arrow-svg {
+  transition: transform var(--transition-fast, 0.2s ease);
+}
+
+.bodytypes-back-btn:hover .back-arrow-svg {
+  transform: translateX(-3px);
+}
+
+@media (max-width: 768px) {
+  .bodytypes-hero {
+    height: 180px;
+    padding-top: 60px;
+  }
+  
+  .bodytypes-back-btn {
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Budgets Page Hero Styles with Background Photo */
+.budgets-hero {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Cinematic height for photo hero */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.budgets-hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+.budgets-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(6, 8, 16, 0.35) 0%, rgba(6, 8, 16, 0.7) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.budgets-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full, 50px);
+  padding: 8px 18px;
+  color: #ffffff !important;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-normal, 0.3s ease);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.budgets-back-btn:hover {
+  background: var(--primary);
+  color: #060810 !important;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+.budgets-back-btn .back-arrow-svg {
+  transition: transform var(--transition-fast, 0.2s ease);
+}
+
+.budgets-back-btn:hover .back-arrow-svg {
+  transform: translateX(-3px);
+}
+
+.budgets-hero-content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.budgets-hero-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 50%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.6; /* Grey color with higher transparency */
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .budgets-hero {
+    height: 240px;
+    padding-top: 60px;
+  }
+  
+  .budgets-back-btn {
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ===================================================
+   Aston Martin British Racing Green Theme — Brands Page
+   =================================================== */
+.brands-page-wrapper {
+  background-color: #03140e !important;
+  background-image: 
+    radial-gradient(1000px circle at 50% -10%, rgba(16, 185, 129, 0.22), transparent 60%),
+    radial-gradient(800px circle at 90% 100%, rgba(5, 150, 105, 0.18), transparent 50%) !important;
+  color: #ecfdf5;
+}
+
+.brands-page-wrapper .brands-hero-overlay {
+  background: linear-gradient(
+    180deg, 
+    rgba(3, 20, 14, 0.15) 0%, 
+    rgba(3, 20, 14, 0.6) 70%, 
+    #03140e 100%
+  ) !important;
+}
+
+.brands-page-wrapper .brands-back-btn {
+  background: rgba(3, 20, 14, 0.75) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.brands-page-wrapper .brands-back-btn:hover {
+  background: #10b981 !important;
+  color: #03140e !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Brand Card Emerald Theme Overrides */
+.brands-page-wrapper .brand-card {
+  background-color: rgba(6, 32, 23, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(16, 185, 129, 0.22) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.brands-page-wrapper .brand-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: #34d399 !important;
+  background-color: rgba(10, 48, 35, 0.85) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(16, 185, 129, 0.35) !important;
+}
+
+.brands-page-wrapper .brand-logo-bubble {
+  background-color: #ffffff !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.brands-page-wrapper .brand-card:hover .brand-logo-bubble {
+  border-color: #34d399 !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.45) !important;
+}
+
+.brands-page-wrapper .brand-name {
+  color: #ffffff !important;
+  font-weight: 800;
+}
+
+.brands-page-wrapper .brand-tagline {
+  color: #6ee7b7 !important;
+}
+
+/* Footer Emerald Theme Overrides */
+.brands-page-wrapper .footer-wrapper {
+  background-color: #020b08 !important;
+  border-top: 1px solid rgba(16, 185, 129, 0.2) !important;
+}
+
+.brands-page-wrapper .footer-brand-desc,
+.brands-page-wrapper .footer-column-title {
+  color: #ecfdf5 !important;
+}
+
+.brands-page-wrapper .footer-link {
+  color: #a7f3d0 !important;
+}
+
+.brands-page-wrapper .footer-link:hover {
+  color: #34d399 !important;
+}
+
+.brands-page-wrapper .footer-bottom {
+  border-top-color: rgba(16, 185, 129, 0.15) !important;
+  color: #6ee7b7 !important;
+}
+
+/* ===================================================
+   Royal Sapphire Blue Theme — Body Types Page
+   =================================================== */
+.bodytypes-page-wrapper {
+  background-color: #060914 !important;
+  background-image: 
+    radial-gradient(1000px circle at 50% -10%, rgba(56, 189, 248, 0.22), transparent 60%),
+    radial-gradient(800px circle at 90% 100%, rgba(37, 99, 235, 0.18), transparent 50%) !important;
+  color: #f0f9ff;
+}
+
+.bodytypes-page-wrapper .bodytypes-hero-overlay {
+  background: linear-gradient(
+    180deg, 
+    rgba(6, 9, 20, 0.15) 0%, 
+    rgba(6, 9, 20, 0.6) 70%, 
+    #060914 100%
+  ) !important;
+}
+
+.bodytypes-page-wrapper .bodytypes-back-btn {
+  background: rgba(6, 9, 20, 0.75) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.bodytypes-page-wrapper .bodytypes-back-btn:hover {
+  background: var(--primary) !important;
+  color: #060914 !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 24px var(--primary-glow) !important;
+}
+
+.bodytypes-page-wrapper .bodytype-card {
+  background-color: rgba(11, 20, 42, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(56, 189, 248, 0.22) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.bodytypes-page-wrapper .bodytype-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: #38bdf8 !important;
+  background-color: rgba(15, 30, 60, 0.85) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.35) !important;
+}
+
+.bodytypes-page-wrapper .bodytype-name {
+  color: #ffffff !important;
+}
+
+.bodytypes-page-wrapper .bodytype-badge {
+  background: rgba(56, 189, 248, 0.15) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+  color: #7dd3fc !important;
+}
+
+.bodytypes-page-wrapper .footer-wrapper {
+  background-color: #03050c !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.2) !important;
+}
+
+/* ===================================================
+   Luxury Warm Amber Gold Theme — Budgets Page
+   =================================================== */
+.budgets-page-wrapper {
+  background-color: #0d0b07 !important;
+  background-image: 
+    radial-gradient(1000px circle at 50% -10%, rgba(245, 158, 11, 0.2), transparent 60%),
+    radial-gradient(800px circle at 90% 100%, rgba(217, 119, 6, 0.15), transparent 50%) !important;
+  color: #fffbeb;
+}
+
+.budgets-page-wrapper .budgets-hero-overlay {
+  background: linear-gradient(
+    180deg, 
+    rgba(13, 11, 7, 0.2) 0%, 
+    rgba(13, 11, 7, 0.65) 70%, 
+    #0d0b07 100%
+  ) !important;
+}
+
+.budgets-page-wrapper .budgets-back-btn {
+  background: rgba(13, 11, 7, 0.75) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.budgets-page-wrapper .budgets-back-btn:hover {
+  background: #f59e0b !important;
+  color: #0d0b07 !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.5) !important;
+}
+
+.budgets-page-wrapper .budget-card {
+  background-color: rgba(28, 22, 14, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(245, 158, 11, 0.22) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.budgets-page-wrapper .budget-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: #fbbf24 !important;
+  background-color: rgba(40, 31, 18, 0.85) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(245, 158, 11, 0.35) !important;
+}
+
+.budgets-page-wrapper .budget-range-label {
+  color: #ffffff !important;
+}
+
+.budgets-page-wrapper .budget-count-badge {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #fcd34d !important;
+}
+
+.budgets-page-wrapper .footer-wrapper {
+  background-color: #060503 !important;
+  border-top: 1px solid rgba(245, 158, 11, 0.2) !important;
+}
+
+/* ===================================================
+   Midnight Azure Theme — New Cars Page
+   =================================================== */
+.newcars-page-wrapper {
+  background-color: #050811 !important;
+  background-image: 
+    radial-gradient(1000px circle at 50% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+    radial-gradient(800px circle at 80% 100%, rgba(37, 99, 235, 0.15), transparent 50%) !important;
+  color: #f8fafc;
+}
+
+.newcars-page-wrapper .newcars-hero-overlay {
+  background: linear-gradient(
+    180deg, 
+    rgba(5, 8, 17, 0.2) 0%, 
+    rgba(5, 8, 17, 0.6) 70%, 
+    #050811 100%
+  ) !important;
+}
+
+.newcars-page-wrapper .car-card {
+  background-color: rgba(12, 19, 36, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+}
+
+.newcars-page-wrapper .car-card:hover {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.3) !important;
+}
+
+.newcars-page-wrapper .footer-wrapper {
+  background-color: #020408 !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.2) !important;
+}
+
+/* ===================================================
+   Dark Carbon Obsidian Theme — About Us Page
+   =================================================== */
+.aboutus-page-wrapper {
+  background-color: #080a12 !important;
+  background-image: 
+    radial-gradient(900px circle at 50% -10%, rgba(99, 102, 241, 0.18), transparent 60%),
+    radial-gradient(700px circle at 90% 100%, rgba(56, 189, 248, 0.15), transparent 50%) !important;
+  color: #f8fafc;
+}
+
+.aboutus-page-wrapper .page-hero {
+  background: transparent !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.aboutus-page-wrapper .why-us-card {
+  background-color: rgba(14, 19, 34, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(99, 102, 241, 0.22) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  border-radius: var(--radius-xl) !important;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.aboutus-page-wrapper .why-us-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: #818cf8 !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.3) !important;
+}
+
+.aboutus-page-wrapper .why-us-title {
+  color: #ffffff !important;
+}
+
+.aboutus-page-wrapper .why-us-desc {
+  color: #cbd5e1 !important;
+}
+
+.aboutus-page-wrapper .footer-wrapper {
+  background-color: #040509 !important;
+  border-top: 1px solid rgba(99, 102, 241, 0.2) !important;
+}

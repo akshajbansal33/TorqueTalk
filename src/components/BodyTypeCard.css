@@ -1,0 +1,234 @@
+/* 
+  Redesigned BodyTypeCard Component Stylesheet
+  Matches the elegant editorial style in the reference image:
+  - 2-column grid layout
+  - Minimal horizontal cards with soft gradient backgrounds
+  - Overlapping 3D floating car images on the top-right
+  - Serif headings for a luxury feel
+  - Clean available counts displayed below each card
+*/
+
+/* 2-column grid layout for the section */
+.bodytypes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 36px;
+  margin-top: var(--space-xl);
+  padding-top: 24px;
+}
+
+/* Card wrapper to hold the card and the count underneath */
+.bodytype-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Main horizontal card container */
+.bodytype-card {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(90deg, #edf2f7 0%, rgba(237, 242, 247, 0.3) 100%);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 6px;
+  padding: 30px 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+  overflow: visible; /* Crucial for overlapping image */
+}
+
+/* Dark mode theme overrides for the card */
+[data-theme="dark"] .bodytype-card {
+  background: linear-gradient(90deg, rgba(30, 41, 59, 0.45) 0%, rgba(15, 23, 42, 0.1) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.bodytype-card:hover {
+  border-color: var(--primary-border);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(90deg, #eef3f8 0%, rgba(238, 243, 248, 0.45) 100%);
+}
+
+[data-theme="dark"] .bodytype-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.4), 0 0 20px -8px var(--primary-glow);
+  background: linear-gradient(90deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.2) 100%);
+}
+
+/* Left Content side */
+.bodytype-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  max-width: 50%;
+}
+
+/* Discover the models - small subtitle */
+.bodytype-card-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--dark-600);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="dark"] .bodytype-card-subtitle {
+  color: var(--dark-400);
+}
+
+/* Title: large editorial serif typography */
+.bodytype-card-title {
+  font-family: 'Playfair Display', 'Didot', 'Georgia', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: 350;
+  color: #0f172a;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .bodytype-card-title {
+  color: #f8fafc;
+}
+
+/* Right side image wrapper (absolutely positioned and floating) */
+.bodytype-image-wrapper {
+  position: absolute;
+  top: -42px;
+  right: -5px;
+  width: 55%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none; /* Let click bubble to card container */
+  transition: transform var(--transition-normal);
+}
+
+.bodytype-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 10px rgba(0, 0, 0, 0.12));
+  transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+[data-theme="dark"] .bodytype-image {
+  filter: drop-shadow(0 14px 12px rgba(0, 0, 0, 0.35));
+}
+
+/* Floating micro-animation on hover */
+.bodytype-card:hover .bodytype-image-wrapper {
+  transform: translateY(-8px) scale(1.05) translateX(4px);
+}
+
+.bodytype-card:hover .bodytype-image {
+  filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.18));
+}
+
+[data-theme="dark"] .bodytype-card:hover .bodytype-image {
+  filter: drop-shadow(0 20px 22px rgba(0, 0, 0, 0.45));
+}
+
+/* Count text displayed below the card box */
+.bodytype-card-count {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dark-600);
+  margin-top: 12px;
+  padding-left: 2px;
+  letter-spacing: 0.2px;
+}
+
+[data-theme="dark"] .bodytype-card-count {
+  color: var(--dark-400);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .bodytypes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 24px;
+  }
+  
+  .bodytype-card {
+    padding: 24px 30px;
+    height: 160px;
+  }
+
+  .bodytype-image-wrapper {
+    top: -36px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bodytypes-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .bodytype-card {
+    height: 150px;
+  }
+
+  .bodytype-image-wrapper {
+    top: -30px;
+    height: 165px;
+  }
+}
+
+/* Tab filter buttons at the top of the body types section */
+.bodytypes-header-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.btn-bodytype-filter {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 4px;
+  background-color: var(--surface);
+  color: var(--dark-900);
+  border: 1.5px solid var(--dark-900);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-bodytype-filter:hover {
+  background-color: var(--light-100);
+}
+
+.btn-bodytype-filter.active {
+  background-color: var(--dark-900);
+  color: var(--white);
+}
+
+[data-theme="dark"] .btn-bodytype-filter {
+  background-color: var(--surface);
+  color: var(--dark-900);
+  border: 1.5px solid var(--dark-800);
+}
+
+[data-theme="dark"] .btn-bodytype-filter:hover {
+  background-color: rgba(148, 163, 184, 0.08);
+  border-color: var(--primary);
+}
+
+[data-theme="dark"] .btn-bodytype-filter.active {
+  background-color: var(--primary);
+  color: #060810;
+  border-color: var(--primary);
+}

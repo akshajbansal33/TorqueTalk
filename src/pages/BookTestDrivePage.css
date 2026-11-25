@@ -1,0 +1,769 @@
+/* 
+  BookTestDrivePage — VIP Test Drive Experience Styling
+  Matches Torque Talk dark-luxury glassmorphism aesthetic
+*/
+
+.testdrive-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--page-bg);
+}
+
+.testdrive-main {
+  flex-grow: 1;
+  padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+/* =========================================
+   1. NAVIGATION & LAYOUT
+   ========================================= */
+
+.testdrive-nav-bar {
+  margin-bottom: var(--space-xl);
+}
+
+.testdrive-content-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.panel-card {
+  background-color: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+/* =========================================
+   2. LEFT COLUMN: STICKY VEHICLE CARD
+   ========================================= */
+
+.sticky-vehicle-card {
+  position: sticky;
+  top: 94px;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.vehicle-picker-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vehicle-picker-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary);
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.vehicle-dropdown-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background-color: rgba(15, 23, 42, 0.04);
+  border: 1px solid var(--hairline);
+  color: var(--dark-900);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+[data-theme='dark'] .vehicle-dropdown-select {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.vehicle-dropdown-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.vehicle-card-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.vehicle-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: #060913;
+}
+
+.vehicle-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vehicle-card-badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.vehicle-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vehicle-card-brand {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.vehicle-card-name {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--dark-900);
+  line-height: 1.2;
+}
+
+.vehicle-card-price {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--dark-900);
+  margin-top: 4px;
+}
+
+.vehicle-fast-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xs);
+  background-color: rgba(15, 23, 42, 0.02);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+}
+
+[data-theme='dark'] .vehicle-fast-specs {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.fast-spec-item {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+
+.spec-k {
+  font-size: 0.7rem;
+  color: var(--dark-400);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.spec-v {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark-900);
+}
+
+.text-cyan {
+  color: var(--primary);
+}
+
+.testdrive-perks-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background-color: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.perk-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--dark-800);
+  line-height: 1.45;
+}
+
+.perk-check {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+/* =========================================
+   3. RIGHT COLUMN: FORM PANEL
+   ========================================= */
+
+.form-card {
+  padding: var(--space-2xl);
+}
+
+.form-header {
+  margin-bottom: var(--space-xl);
+}
+
+.form-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--space-xs);
+}
+
+.form-title {
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: var(--dark-900);
+  letter-spacing: -0.02em;
+}
+
+.form-subtitle {
+  font-size: 0.92rem;
+  color: var(--dark-400);
+  margin-top: 6px;
+  line-height: 1.55;
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.section-legend {
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--dark-900);
+}
+
+/* Experience Toggle Pills */
+.experience-pills-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.experience-pill {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: rgba(15, 23, 42, 0.02);
+  border: 1px solid var(--hairline);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+[data-theme='dark'] .experience-pill {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.experience-pill:hover {
+  border-color: var(--primary-border);
+}
+
+.experience-pill.active {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+  box-shadow: 0 0 16px -2px var(--primary-glow);
+}
+
+.radio-hidden {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pill-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.pill-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pill-content strong {
+  font-size: 0.92rem;
+  color: var(--dark-900);
+}
+
+.pill-content span {
+  font-size: 0.78rem;
+  color: var(--dark-400);
+  line-height: 1.35;
+}
+
+/* Form Fields & Grid */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark-800);
+}
+
+.field-label .req {
+  color: #ef4444;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.form-field.has-error .input-container {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.25) !important;
+}
+
+.input-container:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.field-icon {
+  padding-left: 12px;
+  font-size: 1rem;
+}
+
+.field-prefix {
+  padding-left: 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark-400);
+}
+
+.text-input,
+.select-input {
+  width: 100%;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  font-size: 0.92rem;
+  color: var(--dark-900);
+}
+
+.text-input.with-prefix {
+  padding-left: 8px;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  border: 1px solid var(--hairline);
+  font-size: 0.9rem;
+  color: var(--dark-900);
+  resize: vertical;
+  transition: all var(--transition-fast);
+}
+
+.textarea-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.field-error-msg {
+  font-size: 0.76rem;
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.field-error-msg.block-error {
+  margin-top: 6px;
+  display: block;
+}
+
+/* Checkbox */
+.checkbox-field-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.checkbox-text {
+  font-size: 0.85rem;
+  color: var(--dark-800);
+  line-height: 1.5;
+}
+
+/* Submit Container */
+.form-submit-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-xs);
+}
+
+.btn-submit-reservation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #06121e;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 30px -4px var(--primary-glow);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-submit-reservation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px var(--primary-glow);
+  filter: brightness(1.08);
+}
+
+.submit-disclaimer {
+  font-size: 0.78rem;
+  color: var(--dark-400);
+  text-align: center;
+}
+
+/* =========================================
+   4. SUCCESS / CONFIRMATION PASS VIEW
+   ========================================= */
+
+.booking-success-container {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+
+.success-confirmation-card {
+  max-width: 760px;
+  width: 100%;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  background-color: var(--surface);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-xl);
+  text-align: center;
+}
+
+.success-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-md);
+}
+
+.success-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--dark-900);
+  letter-spacing: -0.02em;
+}
+
+.success-subtitle {
+  font-size: 0.95rem;
+  color: var(--dark-400);
+  margin-top: 6px;
+  margin-bottom: var(--space-2xl);
+}
+
+/* VIP Boarding Pass */
+.vip-boarding-pass {
+  background: linear-gradient(135deg, rgba(6, 12, 24, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%);
+  color: #ffffff;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.15);
+  overflow: hidden;
+  margin-bottom: var(--space-2xl);
+  text-align: left;
+}
+
+.pass-top-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--space-xl);
+  background: rgba(56, 189, 248, 0.12);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.pass-brand-tag {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+
+.pass-booking-id {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #f8fafc;
+}
+
+.pass-main-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  align-items: center;
+}
+
+.pass-car-media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.pass-car-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pass-car-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pass-vehicle-brand {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.pass-vehicle-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.pass-vehicle-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.pass-meta-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pass-meta-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  color: #cbd5e1;
+}
+
+.pass-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-xl);
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.pass-footer-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-item-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.footer-item-val {
+  font-size: 0.88rem;
+  color: #ffffff;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.success-action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.btn-print-pass {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #06121e;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--primary-glow);
+  transition: all var(--transition-fast);
+}
+
+.btn-print-pass:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.btn-book-another,
+.btn-back-showroom {
+  padding: 12px 24px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--dark-800);
+  background-color: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-book-another:hover,
+.btn-back-showroom:hover {
+  border-color: var(--primary-border);
+  color: var(--primary);
+}
+
+/* =========================================
+   5. RESPONSIVE BREAKPOINTS
+   ========================================= */
+
+@media (max-width: 992px) {
+  .testdrive-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-vehicle-card {
+    position: static;
+  }
+
+  .pass-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pass-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-pills-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pass-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: var(--space-lg);
+  }
+
+  .form-title {
+    font-size: 1.55rem;
+  }
+
+  .btn-submit-reservation {
+    width: 100%;
+  }
+}
